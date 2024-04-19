@@ -1,0 +1,48 @@
+{% extends "landing_base.html" %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    {{title}}
+{% endblock title %}
+
+
+{% block content %}
+<div class="col-md-12 mt-2">
+    <div class="card">
+                <div class="crad-header">
+                    <h4 class="lead font-weight-bold text-center my-2">{{title}}</h4>
+
+                </div>
+                <div class="card-body">
+
+                        <div class="row">
+                            {% for cylinder in cylinder_list %}
+
+
+                                <div class="col-md-4">
+                                    <div class="card border-dark p-4">
+                                        <img src="{{cylinder.image.url}}" class="figure-img img-fluid rounded">
+                                        <h5 class="lead font-weight-bold text-dark">{{cylinder.reffiling_size}}</h5>
+                                        <h5 class="lead font-weight-bold text-dark">Price {{cylinder.price}}</h5>
+
+                                        {% if user.is_authenticated and user.user_connection %}
+                                            <a href="{% url 'gas:booking_cylinder' user.user_connection.id %}" class="btn btn-primary btn-block">Book</a>
+                                        {% else %}
+                                            <a href="{% url 'accounts:login' %}" class="btn btn-primary btn-block">Login To Book</a>
+                                        {% endif %}
+
+                                    </div>
+                                </div>
+
+                            {% endfor %}
+                        </div>
+
+                </div>
+    </div>
+    <div class="col-md-12 d-flex justify-content-center mt-3">
+        {% include 'partials/_paginate.html' %}
+    </div>
+</div>
+{% endblock content %}

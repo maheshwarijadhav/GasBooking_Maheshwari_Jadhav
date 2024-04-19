@@ -1,0 +1,100 @@
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'accounts:dashboard_view' %}">
+        <div class="sidebar-brand-icon rotate-n-15">
+          <i class="fas fa-laugh-wink"></i> {{site_info.site_name}}
+        </div>
+        <div class="sidebar-brand-text mx-3">
+          {{user_profile.get_user_type_display}}
+        </div>
+      </a>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'accounts:dashboard_view' %}">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Dashboard</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Interface
+      </div>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Connection</span>
+        </a>
+        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
+
+          <div class="bg-white py-2 collapse-inner rounded">
+            {% if user.user_connection %}
+              <a class="collapse-item" href="{% url 'gas:update_connection' user.user_connection.id %}">Edit Connection</a>
+              <a class="collapse-item" href="{% url 'gas:approved_connection' user.user_connection.id %}">Go For Booking</a>
+            {% else %}
+              <a class="collapse-item" href="{% url 'gas:new_connection' %}">New Connection</a>
+            {% endif %}
+
+          </div>
+        </div>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Payment</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="{% url 'accounts:add_credit_card' %}">Add Payment</a>
+            <a class="collapse-item" href="{% url 'accounts:payment_details' %}">Payment Details</a>
+          </div>
+        </div>
+      </li>
+
+    <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Booking</span>
+        </a>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+
+          <div class="bg-white py-2 collapse-inner rounded">
+            {% if user.user_connection %}
+              <a class="collapse-item" href="{% url 'gas:booking_cylinder' user.user_connection.id %}">Book Cylinder</a>
+              <a class="collapse-item" href="{% url 'gas:booking_list'%}">All Booking</a>
+              <a class="collapse-item" href="{% url 'gas:booking_list'%}?type=confirm">Confirmed Booking</a>
+              <a class="collapse-item" href="{% url 'gas:booking_list'%}?type=on_the_way">On The Way Booking</a>
+              <a class="collapse-item" href="{% url 'gas:booking_list'%}?type=completed">Completed Booking</a>
+            {% else %}
+              <a class="collapse-item" href="{% url 'gas:new_connection' %}">New Connection</a>
+            {% endif %}
+
+          </div>
+        </div>
+      </li>
+
+
+
+
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+
+
+
+    </ul>

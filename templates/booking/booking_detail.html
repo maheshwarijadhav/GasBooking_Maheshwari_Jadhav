@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+    {{title}}
+{% endblock title %}
+
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <div class="card">
+                <div class="card-header bg-danger text-white font-weight-bold">
+                    <h1 class="text-center lead font-weight-bold">{{title}}</h1>
+                </div>
+                <div class="card-body p-0 mt-2">
+                    <div class="response-detail">
+                        <h3 class="text-center font-weight-bold lead bg-secondary text-white p-2">Response Detail</h3>
+
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Delivary Boy</th>
+                                    <th>Reffiling Cost</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{booking.staff.user.username}}</td>
+                                    <td>{{booking.reffiling.price}}</td>
+                                    <td>{{booking.get_status_display}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="response-detail">
+                        <h3 class="text-center font-weight-bold lead bg-secondary text-white p-2">Booking Detail</h3>
+
+                       <table class="table table-inverse">
+                       <tbody class="text-center">
+                            <tr class="bg-danger text-white font-weight-bold">
+                                <td>Booking Number</td>
+                                <td>{{booking.booking_number}}</td>
+                            </tr>
+                            <tr class="bg-danger text-white font-weight-bold">
+                                <td>Connection Number</td>
+                                <td>{{booking.connection.connection_number}}</td>
+                            </tr>
+                            <tr class="bg-success text-white font-weight-bold">
+                                <td>Booking Status</td>
+                                <td>{{booking.get_status_display}}</td>
+                            </tr>
+                            <tr class="bg-secondary text-white font-weight-bold">
+                                <td>Name</td>
+                                <td>{{booking.connection.name}}</td>
+                            </tr>
+                            <tr class="bg-secondary text-white font-weight-bold">
+                                <td>Email</td>
+                                <td>{{booking.connection.email}}</td>
+                            </tr>
+                            <tr class="bg-secondary text-white font-weight-bold">
+                                <td>Phone</td>
+                                <td>{{booking.connection.mobile}}</td>
+                            </tr>
+                            <tr class="bg-secondary text-white font-weight-bold">
+                                <td>Address</td>
+                                <td>{{booking.connection.address}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
